@@ -3,58 +3,45 @@
 #:import utils kivy.utils
 #:import plugins plugins
 
-WindowManager:
+<WindowManager>:
 	transition: FadeTransition(duration=.1)
-	
+
 	LoginWindow:
 	LoadingWindow:
 
-<TelepatMessengerApp>:
-	on_start:
-		app.root.current = "loading"
-
-
 <LoadingWindow>:
 	name: "loading"
+	canvas.before:
+		Color:
+			rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
 
-	FloatLayout:
-		canvas:
-			Color:
-				rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
-			
-			Rectangle:
-				size: self.size
+		Rectangle:
+			size: self.size
+			pos: self.pos
 
-		AnchorLayout:
-			anchor_x: "center"
-			anchor_y: "center"
-
-			Image:
-				source: "assets/imgs/loading.gif"
-				anim_loop: 0
-				anim_delay: .02
+	Image:
+		source: "assets/imgs/loading.gif"
+		allow_stretch: True
+		anim_loop: 0
+		anim_delay: .02
 
 <LoginWindow>:
 	name: "login"
-	on_leave: root.anim_heading()
+	canvas.before:
+		Color:
+			rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
 
-	FloatLayout:
-		canvas:
-			Color:
-				rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
-			
-			Rectangle:
-				size: self.size
-	
-	AnchorLayout:
-		anchor_x: "center"
-		anchor_y: "center"
+		Rectangle:
+			size: self.size
+			pos: self.pos
 
-		Label:
-			id: heading
-			text: "Welcome To [size=62]Telepat[/size]!"
-			font_name: "assets/fonts/10821.ttf"
-			color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
-			font_size: 50
-			markup: True
-			
+	Label:
+		id: heading
+		size_hint: None, None
+		size: self.texture_size
+		pos_hint: {'center': (.5, .5)}
+		text: "Welcome To [size=62]Telepat[/size]!"
+		font_name: "assets/fonts/10821.ttf"
+		color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
+		font_size: dp(50)
+		markup: True

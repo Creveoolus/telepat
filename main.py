@@ -1,14 +1,14 @@
-from kivy.app import App
-from kivy.config import Config
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.animation import Animation
-from kivy.lang import Builder
-from kivy.clock import Clock
 import plugins
-import time
 
+from kivy.animation import Animation
+from kivy.app import App
+from kivy.clock import Clock
+# from kivy.config import Config
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen, ScreenManager
 
 plugins.load_files()
+'''
 # Set Config
 Config.set('kivy', 'pause_on_minimize', 1)
 Config.set('kivy', 'log_dir', 'logs')
@@ -21,31 +21,41 @@ Config.set('graphics', 'height', 490)
 Config.set('graphics', 'width', 829)
 Config.set('graphics', 'resizable', 1)
 Config.write()
+'''
+Builder.load_file('telepat.kv')
 
 
 class WindowManager(ScreenManager):
-	pass
+    pass
+
 
 class LoadingWindow(Screen):
-	pass
+    pass
+
 
 class LoginWindow(Screen):
-	def anim_heading(self):
-		Clock.schedule_once(function, 2)
-		root = App.get_running_app().root.ids
-		anim = Animation(size=(root.header.size[0]-20, root.header.size[1]-20), duration=.2)
-		# self.ids.header.text = "test"
-		# anim = Animation(size=(self.ids.header.size[0]-20, self.ids.header.size[1]-20), duration=.2)
-		anim.start(root.header)
-		
+    def on_kv_post(self, *largs):
+        Clock.schedule_once(self.anim_heading, 2)
 
+    def anim_heading(self, dt):
+        heading = self.ids.heading
+        tex0, tex1 = heading.texture_size
 
-with open('telepat.kv', encoding='utf8') as fd:
-	kv = Builder.load_string(fd.read())
+        anim = Animation(
+            texture_size=(tex0 - 20, tex1 - 20),
+            duration=2.
+        )
+        # self.ids.heading.text = "test"
+
+        anim.start(heading)
+
 
 class TelepatMessengerApp(App):
-	def build(self):
-		return kv
+    def build(self):
+        self.root = WindowManager()
+
+        return self.root
+
 
 if __name__ == '__main__':
-	TelepatMessengerApp().run()
+    TelepatMessengerApp().run()
