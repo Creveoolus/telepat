@@ -1,0 +1,12 @@
+{
+	"name": "dark",
+	"scheme": {
+		"primary-color": [1, 1, 1, 0.2],
+		"secondary-color": [1, 1, 1, 0.4],
+		"primary-text-color": [1, 1, 1, 0.2],
+		"secondary-text-color": [1, 1, 1, 0.4],
+		"background-color": [1, 1, 1, 0.2],
+
+		"success-color": [0, 1, 0, 0.9]
+	}
+}

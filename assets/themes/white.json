@@ -1,0 +1,16 @@
+{
+	"name": "white",
+	"scheme": {
+		"primary-color": "#dbdbdb",
+		"secondary-color": "#9c9c9c",
+		"background-color": "#dbdbdb",
+
+		"success-color": "#43a800",
+		"warning-color": "#e0b700",
+		"fail-color": "#d90000",
+		"info-color": "#00aade",
+
+		"black": "#141414",
+		"muted": "#4a4a4a"
+	}
+}

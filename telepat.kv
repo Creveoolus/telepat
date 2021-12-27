@@ -1,0 +1,60 @@
+#:kivy 2.0
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import utils kivy.utils
+#:import plugins plugins
+
+WindowManager:
+	transition: FadeTransition(duration=.1)
+	
+	LoginWindow:
+	LoadingWindow:
+
+<TelepatMessengerApp>:
+	on_start:
+		app.root.current = "loading"
+
+
+<LoadingWindow>:
+	name: "loading"
+
+	FloatLayout:
+		canvas:
+			Color:
+				rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
+			
+			Rectangle:
+				size: self.size
+
+		AnchorLayout:
+			anchor_x: "center"
+			anchor_y: "center"
+
+			Image:
+				source: "assets/imgs/loading.gif"
+				anim_loop: 0
+				anim_delay: .02
+
+<LoginWindow>:
+	name: "login"
+	on_leave: root.anim_heading()
+
+	FloatLayout:
+		canvas:
+			Color:
+				rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
+			
+			Rectangle:
+				size: self.size
+	
+	AnchorLayout:
+		anchor_x: "center"
+		anchor_y: "center"
+
+		Label:
+			id: heading
+			text: "Welcome To [size=62]Telepat[/size]!"
+			font_name: "assets/fonts/10821.ttf"
+			color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
+			font_size: 50
+			markup: True
+			
