@@ -1,0 +1,11 @@
+{
+	"info": {
+		"code": "en",
+		"human_friendly": "English"
+	},
+	"translate": {
+		"welcome_splash": "[size=40]Welcome to [/size][size=52]Telepat[/size][size=40]![/size]",
+		"login_email": "Email",
+		"login_password": "Password"
+	}
+}

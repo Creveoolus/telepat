@@ -3,45 +3,81 @@
 #:import utils kivy.utils
 #:import plugins plugins
 
-<WindowManager>:
+WindowManager:
 	transition: FadeTransition(duration=.1)
-
+	
 	LoginWindow:
-	LoadingWindow:
 
-<LoadingWindow>:
-	name: "loading"
-	canvas.before:
-		Color:
-			rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
+# <LoadingWindow>:
+# 	name: "loading"
 
-		Rectangle:
-			size: self.size
-			pos: self.pos
+# 	canvas.before:
+# 		Color:
+# 			rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
 
-	Image:
-		source: "assets/imgs/loading.gif"
-		allow_stretch: True
-		anim_loop: 0
-		anim_delay: .02
+# 		Rectangle:
+# 			size: self.size
+# 			pos: self.pos
+
+# 	Image:
+# 		source: "assets/imgs/loading.gif"
+# 		anim_loop: 0
+# 		anim_delay: .02
 
 <LoginWindow>:
 	name: "login"
-	canvas.before:
-		Color:
-			rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
 
-		Rectangle:
-			size: self.size
-			pos: self.pos
+	FloatLayout:
+		canvas.before:
+			Color:
+				rgba: utils.get_color_from_hex(plugins.theme["scheme"]["background-color"])
 
-	Label:
-		id: heading
-		size_hint: None, None
-		size: self.texture_size
-		pos_hint: {'center': (.5, .5)}
-		text: "Welcome To [size=62]Telepat[/size]!"
-		font_name: "assets/fonts/10821.ttf"
-		color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
-		font_size: dp(50)
-		markup: True
+			Rectangle:
+				size: self.size
+				pos: self.pos
+
+
+		Label:
+			id: heading
+			size_hint: None, None
+			size: self.texture_size
+			opacity: 0
+			pos_hint: {"center_x": 0.5, "top": 0.6}
+			text: plugins.lang["translate"]["welcome_splash"]
+			font_name: "assets/fonts/10821.ttf"
+			color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
+			font_size: dp(40)
+			markup: True
+
+		GridLayout:
+			id: loginform
+			opacity: 1
+			rows: 5
+			cols: 1
+
+			Label:
+				id: heading
+				size_hint: (.8, .8)
+				size: self.texture_size
+				opacity: 0
+				pos_hint: {"center_x": 0.5, "top": 0.6}
+				text: plugins.lang["translate"]["welcome_splash"]
+				font_name: "assets/fonts/10821.ttf"
+				color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
+				font_size: dp(40)
+				markup: True
+
+			Label:
+				text: plugins.lang["translate"]["login_email"]
+				color: utils.get_color_from_hex(plugins.theme["scheme"]["black"])
+				font_name: "assets/fonts/sans-pro.ttf"
+				markup: True
+				font_size: dp(19)
+				pos_hint: {"top": 1.0}
+				size_hint: None, None
+			
+			# TextInput:
+			# 	multiline: False
+			# 	placeholder: "Bruh"
+			# 	size_hint: (.5, .1)
+

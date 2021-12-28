@@ -1,0 +1,9 @@
+{
+	"info": {
+		"code": "ru",
+		"human_friendly": "Русский"
+	},
+	"translate": {
+		"welcome_splash": "[size=40]Добро пожаловать в [/size][size=52]Telepat[/size][size=40]![/size]"
+	}
+}
